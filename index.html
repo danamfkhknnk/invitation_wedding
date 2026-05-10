@@ -1,1 +1,1863 @@
-g
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Invitation – Raka & Dinda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      /* ===========================
+       RESET & BASE
+    =========================== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --gold: #c9a84c;
+        --gold-lt: #e8d5a3;
+        --ivory: #fdf8f0;
+        --dark: #2c2417;
+        --mid: #6b5744;
+        --glass: rgba(255, 255, 255, 0.18);
+        --shadow: 0 8px 32px rgba(44, 36, 23, 0.12);
+        --radius: 16px;
+        --trans: 0.35s ease;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--ivory);
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+      img {
+        display: block;
+        width: 100%;
+        object-fit: cover;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ===========================
+       UTILITY – SCROLL ANIMATION
+    =========================== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ===========================
+       STICKY NAVBAR
+    =========================== */
+      #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 900;
+        background: rgba(253, 248, 240, 0.92);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 16px rgba(44, 36, 23, 0.08);
+        padding: 0 1.5rem;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: transform var(--trans);
+      }
+      #navbar.hidden {
+        transform: translateY(-100%);
+      }
+      .nav-brand {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: var(--gold);
+        letter-spacing: 1px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--mid);
+        position: relative;
+        padding-bottom: 2px;
+        transition: color var(--trans);
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gold);
+        transition: width var(--trans);
+      }
+      .nav-links a.active,
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-links a.active::after,
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      /* hamburger */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .hamburger span {
+        width: 24px;
+        height: 2px;
+        background: var(--mid);
+        transition: var(--trans);
+        border-radius: 2px;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      /* mobile nav */
+      @media (max-width: 767px) {
+        .hamburger {
+          display: flex;
+        }
+        .nav-links {
+          position: fixed;
+          top: 60px;
+          left: 0;
+          right: 0;
+          background: var(--ivory);
+          flex-direction: column;
+          padding: 1.5rem 2rem;
+          gap: 1rem;
+          transform: translateX(100%);
+          transition: transform var(--trans);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        .nav-links.open {
+          transform: translateX(0);
+        }
+      }
+
+      /* ===========================
+       1. INTRO / LOADING SCREEN
+    =========================== */
+      #intro {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: linear-gradient(135deg, #2c2417 0%, #4a3728 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        overflow: hidden;
+      }
+      /* petals */
+      .petals {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .petal {
+        position: absolute;
+        top: -30px;
+        width: 12px;
+        height: 12px;
+        background: var(--gold-lt);
+        border-radius: 50% 0 50% 0;
+        opacity: 0.7;
+        animation: fall linear infinite;
+      }
+      @keyframes fall {
+        0% {
+          transform: translateY(-30px) rotate(0deg);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      /* envelope */
+      .envelope-wrap {
+        position: relative;
+        width: 160px;
+        height: 110px;
+      }
+      .envelope {
+        width: 160px;
+        height: 110px;
+        background: var(--gold-lt);
+        border-radius: 4px;
+        position: relative;
+        overflow: visible;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+      .env-body {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(160deg, #e8d5a3 60%, #d4b97a);
+        border-radius: 4px;
+        position: relative;
+      }
+      .env-body::before,
+      .env-body::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        border: 55px solid transparent;
+      }
+      .env-body::before {
+        left: 0;
+        border-left-color: #c9a84c;
+        border-bottom-color: #c9a84c;
+      }
+      .env-body::after {
+        right: 0;
+        border-right-color: #b8934a;
+        border-bottom-color: #b8934a;
+      }
+      .env-flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 80px solid transparent;
+        border-right: 80px solid transparent;
+        border-top: 58px solid #d4b97a;
+        transform-origin: top center;
+        transition: transform 0.8s ease 0.5s;
+        z-index: 2;
+      }
+      .env-flap.open {
+        transform: rotateX(180deg);
+      }
+      .env-letter {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translateY(0);
+        width: 120px;
+        height: 80px;
+        background: white;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 0.7rem;
+        color: var(--gold);
+        letter-spacing: 1px;
+        text-align: center;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        transition: transform 0.7s ease 1.2s;
+        z-index: 1;
+      }
+      .env-letter.rise {
+        transform: translate(-50%, -90px);
+      }
+      .intro-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.4rem, 4vw, 2rem);
+        color: var(--gold-lt);
+        text-align: center;
+        opacity: 0;
+        animation: fadeIn 0.8s ease 1.8s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+      .btn-open {
+        opacity: 0;
+        animation: fadeIn 0.8s ease 2.2s forwards;
+        padding: 0.85rem 2.5rem;
+        background: var(--gold);
+        color: var(--dark);
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+        transition:
+          transform var(--trans),
+          box-shadow var(--trans);
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-open:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 28px rgba(201, 168, 76, 0.55);
+      }
+      #intro.fade-out {
+        animation: introOut 0.8s ease forwards;
+      }
+      @keyframes introOut {
+        to {
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+
+      /* ===========================
+       RIPPLE EFFECT (global)
+    =========================== */
+      .ripple-btn {
+        position: relative;
+        overflow: hidden;
+      }
+      .ripple-btn .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.35);
+        transform: scale(0);
+        animation: ripple-anim 0.6s linear;
+        pointer-events: none;
+      }
+      @keyframes ripple-anim {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+
+      /* ===========================
+       2. HERO SECTION
+    =========================== */
+      #hero {
+        min-height: 100vh;
+        padding-top: 60px;
+        background: linear-gradient(160deg, #2c2417 0%, #4a3728 45%, #6b5744 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-bg-parallax {
+        position: absolute;
+        inset: -20%;
+        background: radial-gradient(ellipse at 60% 40%, rgba(201, 168, 76, 0.15) 0%, transparent 65%), radial-gradient(ellipse at 20% 70%, rgba(201, 168, 76, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+      }
+      .hero-ornament {
+        position: absolute;
+        font-size: 5rem;
+        color: rgba(201, 168, 76, 0.07);
+        pointer-events: none;
+        user-select: none;
+      }
+      .hero-ornament.top-left {
+        top: 5%;
+        left: 3%;
+      }
+      .hero-ornament.top-right {
+        top: 5%;
+        right: 3%;
+      }
+      .hero-ornament.bot-left {
+        bottom: 5%;
+        left: 3%;
+      }
+      .hero-ornament.bot-right {
+        bottom: 5%;
+        right: 3%;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        padding: 2rem 1.5rem;
+      }
+      .hero-subtitle {
+        font-size: clamp(0.75rem, 2vw, 0.9rem);
+        color: var(--gold-lt);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .hero-names {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(3rem, 10vw, 6rem);
+        color: #fff;
+        line-height: 1.1;
+      }
+      .hero-names span {
+        color: var(--gold);
+      }
+      .hero-ampersand {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        color: var(--gold);
+        display: block;
+        margin: 0.1em 0;
+      }
+      .hero-date {
+        margin-top: 1.5rem;
+        font-size: clamp(0.85rem, 2vw, 1rem);
+        color: var(--gold-lt);
+        letter-spacing: 2px;
+      }
+      .hero-divider {
+        width: 80px;
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--gold), transparent);
+        margin: 1.5rem auto;
+      }
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: var(--gold-lt);
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        animation: bounce 2s infinite;
+      }
+      .scroll-indicator svg {
+        width: 20px;
+        fill: var(--gold);
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(8px);
+        }
+      }
+
+      /* ===========================
+       SECTION BASE STYLES
+    =========================== */
+      section {
+        padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .section-full {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .section-tag {
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.5rem;
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+        color: var(--dark);
+        margin-bottom: 1rem;
+      }
+      .section-divider {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(to right, var(--gold), var(--gold-lt));
+        margin: 0 auto 2.5rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+
+      /* ===========================
+       3. COUNTDOWN TIMER
+    =========================== */
+      #countdown {
+        background: linear-gradient(135deg, #2c2417 0%, #4a3728 100%);
+        max-width: 100%;
+      }
+      #countdown section {
+        max-width: 900px;
+      }
+      #countdown .section-title {
+        color: #fff;
+      }
+      #countdown .section-tag {
+        color: var(--gold-lt);
+      }
+      .countdown-grid {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+      .count-card {
+        background: var(--glass);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        border-radius: var(--radius);
+        padding: 1.5rem 2rem;
+        min-width: 120px;
+        text-align: center;
+        box-shadow: var(--shadow);
+      }
+      .count-num {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        color: var(--gold);
+        line-height: 1;
+      }
+      .count-label {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold-lt);
+        margin-top: 0.5rem;
+      }
+
+      /* ===========================
+       4. MEMPELAI
+    =========================== */
+      .couple-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+      .couple-card {
+        background: #fff;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition:
+          transform var(--trans),
+          box-shadow var(--trans);
+      }
+      .couple-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 16px 48px rgba(44, 36, 23, 0.18);
+      }
+      .couple-photo {
+        height: 320px;
+      }
+      .couple-info {
+        padding: 1.5rem;
+        text-align: center;
+      }
+      .couple-info h3 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
+        color: var(--dark);
+      }
+      .couple-info .couple-son {
+        font-size: 0.8rem;
+        color: var(--mid);
+        margin-top: 0.3rem;
+      }
+      .couple-info .couple-parents {
+        font-size: 0.8rem;
+        color: var(--gold);
+        margin-top: 0.2rem;
+      }
+      @media (max-width: 767px) {
+        .couple-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ===========================
+       5. DETAIL ACARA
+    =========================== */
+      #acara {
+        background: var(--ivory);
+      }
+      .acara-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+      .acara-card {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        border-top: 4px solid var(--gold);
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease,
+          box-shadow var(--trans);
+      }
+      .acara-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .acara-card:hover {
+        box-shadow: 0 16px 48px rgba(44, 36, 23, 0.15);
+      }
+      .acara-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      .acara-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: var(--dark);
+        margin-bottom: 1rem;
+      }
+      .acara-detail {
+        font-size: 0.85rem;
+        color: var(--mid);
+        line-height: 1.9;
+      }
+      .acara-btns {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 0.6rem 1.4rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition:
+          transform var(--trans),
+          box-shadow var(--trans);
+        min-width: 44px;
+        min-height: 44px;
+      }
+      .btn:hover {
+        transform: scale(1.05);
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: var(--dark);
+        box-shadow: 0 4px 16px rgba(201, 168, 76, 0.35);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--gold);
+        border: 2px solid var(--gold);
+      }
+      .btn-outline:hover {
+        background: var(--gold);
+        color: var(--dark);
+      }
+      @media (max-width: 767px) {
+        .acara-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ===========================
+       6. GALERI FOTO
+    =========================== */
+      #galeri {
+        background: #f7f1e8;
+        max-width: 100%;
+      }
+      #galeri section {
+        max-width: 1100px;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 2.5rem;
+      }
+      .gallery-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        aspect-ratio: 4/3;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        transition:
+          transform var(--trans),
+          box-shadow var(--trans);
+      }
+      .gallery-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      }
+      .gallery-item img {
+        height: 100%;
+        transition: transform 0.5s ease;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.08);
+      }
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(44, 36, 23, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity var(--trans);
+      }
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+      .gallery-overlay svg {
+        width: 36px;
+        fill: #fff;
+      }
+      @media (max-width: 1024px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 767px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* LIGHTBOX */
+      #lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        background: rgba(0, 0, 0, 0.92);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s ease;
+      }
+      #lightbox.open {
+        display: flex;
+      }
+      #lightbox img {
+        max-width: 90vw;
+        max-height: 85vh;
+        border-radius: 8px;
+        object-fit: contain;
+        width: auto;
+      }
+      .lb-btn {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.12);
+        border: none;
+        color: #fff;
+        font-size: 2rem;
+        cursor: pointer;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background var(--trans);
+      }
+      .lb-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      #lb-prev {
+        left: 1.5rem;
+      }
+      #lb-next {
+        right: 1.5rem;
+      }
+      #lb-close {
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 1.4rem;
+      }
+
+      /* ===========================
+       7. RSVP FORM
+    =========================== */
+      #rsvp {
+        background: linear-gradient(135deg, #2c2417, #4a3728);
+        max-width: 100%;
+      }
+      #rsvp section {
+        max-width: 700px;
+      }
+      #rsvp .section-title {
+        color: #fff;
+      }
+      #rsvp .section-tag {
+        color: var(--gold-lt);
+      }
+      #rsvp .section-divider {
+        background: linear-gradient(to right, var(--gold), transparent);
+      }
+      .rsvp-form {
+        background: var(--glass);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+        box-shadow: var(--shadow);
+      }
+      .form-group {
+        margin-bottom: 1.25rem;
+      }
+      .form-group label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--gold-lt);
+        margin-bottom: 0.4rem;
+        letter-spacing: 0.5px;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 10px;
+        color: #fff;
+        font-size: 0.9rem;
+        font-family: "Poppins", sans-serif;
+        outline: none;
+        transition:
+          border-color var(--trans),
+          background var(--trans);
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--gold);
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      .radio-group {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .radio-label {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        cursor: pointer;
+        color: var(--gold-lt);
+        font-size: 0.85rem;
+      }
+      .radio-label input {
+        width: auto;
+        accent-color: var(--gold);
+      }
+      .btn-submit {
+        width: 100%;
+        padding: 0.9rem;
+        background: var(--gold);
+        color: var(--dark);
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition:
+          transform var(--trans),
+          box-shadow var(--trans);
+        min-height: 48px;
+      }
+      .btn-submit:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 24px rgba(201, 168, 76, 0.5);
+      }
+      .spinner {
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(44, 36, 23, 0.3);
+        border-top-color: var(--dark);
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+        display: none;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .rsvp-success {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+        color: var(--gold-lt);
+      }
+      .rsvp-success .success-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .rsvp-success h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--gold);
+      }
+
+      /* ===========================
+       8. UCAPAN & DOA
+    =========================== */
+      #ucapan {
+        background: var(--ivory);
+      }
+      .wishes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+        max-height: 480px;
+        overflow-y: auto;
+        padding-right: 0.5rem;
+      }
+      .wish-card {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        border-left: 4px solid var(--gold);
+        animation: slideIn 0.5s ease;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .wish-name {
+        font-weight: 600;
+        color: var(--dark);
+        font-size: 0.9rem;
+      }
+      .wish-time {
+        font-size: 0.72rem;
+        color: var(--mid);
+        margin-bottom: 0.5rem;
+      }
+      .wish-text {
+        font-size: 0.85rem;
+        color: var(--mid);
+        line-height: 1.7;
+      }
+      .no-wishes {
+        color: var(--mid);
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      /* ===========================
+       9. INFORMASI TAMBAHAN
+    =========================== */
+      #info {
+        background: #f7f1e8;
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
+      .info-card {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 1.75rem;
+        box-shadow: var(--shadow);
+      }
+      .info-card h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        color: var(--dark);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .info-card p {
+        font-size: 0.85rem;
+        color: var(--mid);
+        line-height: 1.8;
+      }
+      /* dress code swatches */
+      .swatches {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .swatch {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        position: relative;
+      }
+      .swatch[title]:hover::after {
+        content: attr(title);
+        position: absolute;
+        bottom: calc(100% + 4px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--dark);
+        color: #fff;
+        font-size: 0.65rem;
+        padding: 2px 6px;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+      /* rekening */
+      .rekening-item {
+        background: var(--ivory);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-top: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .rek-info .rek-bank {
+        font-weight: 600;
+        color: var(--dark);
+        font-size: 0.85rem;
+      }
+      .rek-info .rek-num {
+        font-size: 0.8rem;
+        color: var(--mid);
+      }
+      .btn-copy {
+        padding: 0.4rem 0.85rem;
+        background: var(--gold);
+        color: var(--dark);
+        border: none;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: transform var(--trans);
+        position: relative;
+        min-height: 44px;
+      }
+      .btn-copy:hover {
+        transform: scale(1.05);
+      }
+      .copy-tooltip {
+        position: absolute;
+        bottom: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--dark);
+        color: #fff;
+        font-size: 0.7rem;
+        padding: 3px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .copy-tooltip.show {
+        opacity: 1;
+      }
+
+      /* ===========================
+       10. FOOTER
+    =========================== */
+      footer {
+        background: linear-gradient(135deg, #2c2417, #1a1008);
+        color: var(--gold-lt);
+        text-align: center;
+        padding: clamp(3rem, 6vw, 5rem) 2rem 2rem;
+      }
+      .footer-quote {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1rem, 3vw, 1.4rem);
+        font-style: italic;
+        color: var(--gold-lt);
+        max-width: 560px;
+        margin: 0 auto 0.5rem;
+        line-height: 1.6;
+      }
+      .footer-verse {
+        font-size: 0.75rem;
+        color: rgba(232, 213, 163, 0.6);
+        margin-bottom: 2rem;
+      }
+      .footer-names {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.5rem, 5vw, 2.2rem);
+        color: var(--gold);
+        margin-bottom: 2rem;
+      }
+      .btn-music {
+        padding: 0.75rem 2rem;
+        background: rgba(201, 168, 76, 0.15);
+        border: 1px solid var(--gold);
+        border-radius: 50px;
+        color: var(--gold);
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background var(--trans);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 44px;
+      }
+      .btn-music:hover {
+        background: rgba(201, 168, 76, 0.3);
+      }
+      .footer-copy {
+        font-size: 0.72rem;
+        color: rgba(232, 213, 163, 0.35);
+        margin-top: 2.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ======================================
+     1. INTRO / LOADING SCREEN
+======================================= -->
+    <div id="intro">
+      <!-- Petals background -->
+      <div class="petals" id="petals"></div>
+
+      <!-- Envelope animation -->
+      <div class="envelope-wrap">
+        <div class="envelope">
+          <div class="env-body"></div>
+          <div class="env-flap" id="envFlap"></div>
+          <div class="env-letter" id="envLetter">✦<br />R &amp; D<br />✦</div>
+        </div>
+      </div>
+
+      <div class="intro-title">✦ &nbsp; Kami Mengundang Anda &nbsp; ✦</div>
+
+      <button class="btn-open ripple-btn" id="btnOpen" onclick="openInvitation()">Buka Undangan</button>
+    </div>
+
+    <!-- ======================================
+     STICKY NAVBAR
+======================================= -->
+    <nav id="navbar">
+      <div class="nav-brand">R &amp; D</div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" onclick="closeMenu()">Beranda</a></li>
+        <li><a href="#mempelai" onclick="closeMenu()">Mempelai</a></li>
+        <li><a href="#acara" onclick="closeMenu()">Acara</a></li>
+        <li><a href="#galeri" onclick="closeMenu()">Galeri</a></li>
+        <li><a href="#rsvp" onclick="closeMenu()">RSVP</a></li>
+        <li><a href="#info" onclick="closeMenu()">Info</a></li>
+      </ul>
+    </nav>
+
+    <!-- ======================================
+     2. HERO SECTION
+======================================= -->
+    <section id="hero">
+      <div class="hero-bg-parallax" id="heroBg"></div>
+      <span class="hero-ornament top-left">❧</span>
+      <span class="hero-ornament top-right">❧</span>
+      <span class="hero-ornament bot-left">✦</span>
+      <span class="hero-ornament bot-right">✦</span>
+
+      <div class="hero-content">
+        <p class="hero-subtitle">The Wedding of</p>
+        <h1 class="hero-names">
+          <span>Raka Pratama</span>
+          <em class="hero-ampersand">&amp;</em>
+          <span>Dinda Aulia</span>
+        </h1>
+        <div class="hero-divider"></div>
+        <p class="hero-date">◈ &nbsp; Sabtu, 12 Juli 2025 &nbsp; ◈</p>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <svg viewBox="0 0 24 24"><path d="M12 16l-6-6h12z" /></svg>
+      </div>
+    </section>
+
+    <!-- ======================================
+     3. COUNTDOWN TIMER
+======================================= -->
+    <div id="countdown">
+      <section class="text-center reveal">
+        <p class="section-tag">Menghitung Hari</p>
+        <h2 class="section-title">Hari Bahagia Kami</h2>
+        <div class="section-divider"></div>
+        <div class="countdown-grid">
+          <div class="count-card">
+            <div class="count-num" id="cd-days">00</div>
+            <div class="count-label">Hari</div>
+          </div>
+          <div class="count-card">
+            <div class="count-num" id="cd-hours">00</div>
+            <div class="count-label">Jam</div>
+          </div>
+          <div class="count-card">
+            <div class="count-num" id="cd-mins">00</div>
+            <div class="count-label">Menit</div>
+          </div>
+          <div class="count-card">
+            <div class="count-num" id="cd-secs">00</div>
+            <div class="count-label">Detik</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ======================================
+     4. MEMPELAI
+======================================= -->
+    <section id="mempelai" class="text-center">
+      <p class="section-tag reveal">Bismillahirrahmanirrahim</p>
+      <h2 class="section-title reveal">Kedua Mempelai</h2>
+      <div class="section-divider"></div>
+      <div class="couple-grid">
+        <!-- Mempelai Pria -->
+        <div class="couple-card reveal">
+          <div class="couple-photo">
+            <img src="https://picsum.photos/600/400?random=10" alt="Foto Mempelai Pria" loading="lazy" />
+          </div>
+          <div class="couple-info">
+            <h3>Raka Pratama, S.T.</h3>
+            <p class="couple-son">Putra Pertama dari</p>
+            <p class="couple-parents">Bapak Ahmad Suroso &amp; Ibu Siti Rahayu</p>
+          </div>
+        </div>
+        <!-- Mempelai Wanita -->
+        <div class="couple-card reveal">
+          <div class="couple-photo">
+            <img src="https://picsum.photos/600/400?random=20" alt="Foto Mempelai Wanita" loading="lazy" />
+          </div>
+          <div class="couple-info">
+            <h3>Dinda Aulia, S.Pd.</h3>
+            <p class="couple-son">Putri Kedua dari</p>
+            <p class="couple-parents">Bapak Hendra Wijaya &amp; Ibu Dewi Lestari</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================
+     5. DETAIL ACARA
+======================================= -->
+    <div id="acara">
+      <section class="text-center">
+        <p class="section-tag reveal">Save The Date</p>
+        <h2 class="section-title reveal">Detail Acara</h2>
+        <div class="section-divider"></div>
+        <div class="acara-grid">
+          <!-- Akad Nikah -->
+          <div class="acara-card" id="card-akad">
+            <div class="acara-icon">🕌</div>
+            <h3>Akad Nikah</h3>
+            <div class="acara-detail">
+              <p>📅 Sabtu, 12 Juli 2025</p>
+              <p>⏰ 08.00 – 10.00 WIB</p>
+              <p>📍 Masjid Al-Hikmah</p>
+              <p>Jl. Merdeka No. 45, Jakarta Selatan</p>
+            </div>
+            <div class="acara-btns">
+              <button class="btn btn-primary ripple-btn" onclick="openMaps()">📍 Lihat Lokasi</button>
+              <button class="btn btn-outline ripple-btn" onclick="saveCalendar('akad')">📅 Simpan Kalender</button>
+            </div>
+          </div>
+          <!-- Resepsi -->
+          <div class="acara-card" id="card-resepsi">
+            <div class="acara-icon">🎊</div>
+            <h3>Resepsi Pernikahan</h3>
+            <div class="acara-detail">
+              <p>📅 Sabtu, 12 Juli 2025</p>
+              <p>⏰ 11.00 – 14.00 WIB</p>
+              <p>📍 Gedung Serbaguna Harmoni</p>
+              <p>Jl. Sudirman Kav. 12, Jakarta Pusat</p>
+            </div>
+            <div class="acara-btns">
+              <button class="btn btn-primary ripple-btn" onclick="openMaps()">📍 Lihat Lokasi</button>
+              <button class="btn btn-outline ripple-btn" onclick="saveCalendar('resepsi')">📅 Simpan Kalender</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ======================================
+     6. GALERI FOTO
+======================================= -->
+    <div id="galeri">
+      <section class="text-center">
+        <p class="section-tag reveal">Momen Berharga</p>
+        <h2 class="section-title reveal">Galeri Foto</h2>
+        <div class="section-divider"></div>
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- 9 foto placeholder -->
+        </div>
+      </section>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+      <button class="lb-btn" id="lb-prev" onclick="lightboxNav(-1)">&#8592;</button>
+      <img id="lb-img" src="" alt="Galeri" />
+      <button class="lb-btn" id="lb-next" onclick="lightboxNav(1)">&#8594;</button>
+      <button class="lb-btn" id="lb-close" onclick="closeLightbox()">&#10005;</button>
+    </div>
+
+    <!-- ======================================
+     7. RSVP FORM
+======================================= -->
+    <div id="rsvp">
+      <section class="text-center">
+        <p class="section-tag">Konfirmasi Kehadiran</p>
+        <h2 class="section-title">RSVP</h2>
+        <div class="section-divider"></div>
+
+        <div class="rsvp-form reveal">
+          <!-- Form -->
+          <div id="rsvpFormWrap">
+            <div class="form-group">
+              <label>Nama Lengkap *</label>
+              <input type="text" id="rsvp-name" placeholder="Nama kamu..." />
+            </div>
+            <div class="form-group">
+              <label>Nomor HP *</label>
+              <input type="tel" id="rsvp-phone" placeholder="08xx-xxxx-xxxx" />
+            </div>
+            <div class="form-group">
+              <label>Jumlah Tamu *</label>
+              <input type="number" id="rsvp-guests" placeholder="1" min="1" max="10" />
+            </div>
+            <div class="form-group">
+              <label>Konfirmasi Kehadiran *</label>
+              <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="attend" value="hadir" /> ✅ Hadir</label>
+                <label class="radio-label"><input type="radio" name="attend" value="tidak" /> ❌ Tidak Hadir</label>
+                <label class="radio-label"><input type="radio" name="attend" value="ragu" /> 🤔 Masih Ragu</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Ucapan &amp; Doa</label>
+              <textarea id="rsvp-wish" placeholder="Tuliskan ucapan dan doa terbaikmu..."></textarea>
+            </div>
+            <button class="btn-submit ripple-btn" id="btnSubmit" onclick="submitRSVP()">
+              <div class="spinner" id="rsvpSpinner"></div>
+              <span id="submitText">Kirim RSVP ✉️</span>
+            </button>
+          </div>
+          <!-- Sukses -->
+          <div class="rsvp-success" id="rsvpSuccess">
+            <div class="success-icon">🎉</div>
+            <h3>Terima Kasih!</h3>
+            <p style="color: var(--gold-lt); margin-top: 0.5rem">Kami sangat senang bisa berbagi kebahagiaan denganmu.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ======================================
+     8. UCAPAN & DOA
+======================================= -->
+    <section id="ucapan" class="text-center">
+      <p class="section-tag reveal">Guestbook</p>
+      <h2 class="section-title reveal">Ucapan &amp; Doa</h2>
+      <div class="section-divider"></div>
+      <div class="wishes-list" id="wishesList">
+        <p class="no-wishes" id="noWishes">Belum ada ucapan. Jadilah yang pertama! 💌</p>
+      </div>
+    </section>
+
+    <!-- ======================================
+     9. INFORMASI TAMBAHAN
+======================================= -->
+    <div id="info">
+      <section>
+        <p class="section-tag text-center reveal">Informasi</p>
+        <h2 class="section-title text-center reveal">Informasi Tambahan</h2>
+        <div class="section-divider"></div>
+        <div class="info-grid">
+          <!-- Dress Code -->
+          <div class="info-card reveal">
+            <h4>👗 Dress Code</h4>
+            <p>Harap mengenakan pakaian formal dengan palet warna berikut:</p>
+            <div class="swatches">
+              <div class="swatch" style="background: #c9a84c" title="Soft Gold"></div>
+              <div class="swatch" style="background: #f5f0e8" title="Ivory"></div>
+              <div class="swatch" style="background: #8b7355" title="Warm Brown"></div>
+              <div class="swatch" style="background: #d4b896" title="Nude"></div>
+              <div class="swatch" style="background: #2c2417" title="Dark Chocolate"></div>
+            </div>
+          </div>
+
+          <!-- Protokol -->
+          <div class="info-card reveal">
+            <h4>🌿 Protokol Kesehatan</h4>
+            <p>
+              Demi kenyamanan bersama:<br />
+              ✔ Harap menjaga kesehatan<br />
+              ✔ Cuci tangan tersedia di area masuk<br />
+              ✔ Pakaian rapi &amp; sopan<br />
+              ✔ Mohon datang tepat waktu
+            </p>
+          </div>
+
+          <!-- Parkir -->
+          <div class="info-card reveal">
+            <h4>🚗 Transportasi &amp; Parkir</h4>
+            <p>
+              Parkir tersedia di area gedung.<br />
+              Dapat dijangkau via:<br />
+              🚌 TransJakarta Koridor 1<br />
+              🚇 MRT Stasiun Bundaran HI<br />
+              🚗 Parkir gratis untuk tamu
+            </p>
+          </div>
+
+          <!-- Amplop Digital -->
+          <div class="info-card reveal">
+            <h4>💝 Amplop Digital</h4>
+            <p>Bagi yang ingin memberikan hadiah pernikahan secara digital:</p>
+            <div class="rekening-item">
+              <div class="rek-info">
+                <div class="rek-bank">BCA – a.n. Raka Pratama</div>
+                <div class="rek-num">1234567890</div>
+              </div>
+              <button class="btn-copy ripple-btn" onclick="copyRekening(this, '1234567890')">
+                Salin
+                <span class="copy-tooltip">Tersalin!</span>
+              </button>
+            </div>
+            <div class="rekening-item">
+              <div class="rek-info">
+                <div class="rek-bank">Mandiri – a.n. Dinda Aulia</div>
+                <div class="rek-num">0987654321</div>
+              </div>
+              <button class="btn-copy ripple-btn" onclick="copyRekening(this, '0987654321')">
+                Salin
+                <span class="copy-tooltip">Tersalin!</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ======================================
+     10. FOOTER
+======================================= -->
+    <footer>
+      <p class="footer-quote">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."</p>
+      <p class="footer-verse">— QS. Ar-Rum: 21</p>
+      <div class="footer-names">Raka &amp; Dinda</div>
+
+      <button class="btn-music ripple-btn" id="btnMusic" onclick="toggleMusic()">🎵 Putar Musik</button>
+
+      <!-- Audio (royalty-free public URL) -->
+      <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg" />
+      </audio>
+
+      <p class="footer-copy">Made with ❤️ &nbsp;|&nbsp; Raka &amp; Dinda Wedding 2025</p>
+    </footer>
+
+    <!-- ======================================
+     JAVASCRIPT
+======================================= -->
+    <script>
+      /* ----------------------------------
+     INTRO – PETALS GENERATOR
+  ---------------------------------- */
+      (function generatePetals() {
+        const container = document.getElementById("petals");
+        for (let i = 0; i < 25; i++) {
+          const p = document.createElement("div");
+          p.className = "petal";
+          p.style.left = Math.random() * 100 + "vw";
+          p.style.width = 8 + Math.random() * 10 + "px";
+          p.style.height = 8 + Math.random() * 10 + "px";
+          p.style.animationDuration = 5 + Math.random() * 8 + "s";
+          p.style.animationDelay = Math.random() * 6 + "s";
+          p.style.opacity = 0.4 + Math.random() * 0.5;
+          container.appendChild(p);
+        }
+      })();
+
+      /* Envelope open animation on load */
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("envFlap").classList.add("open");
+        }, 600);
+        setTimeout(() => {
+          document.getElementById("envLetter").classList.add("rise");
+        }, 1300);
+      });
+
+      /* Open invitation */
+      function openInvitation() {
+        const intro = document.getElementById("intro");
+        intro.classList.add("fade-out");
+        // start music (requires user gesture)
+        // document.getElementById('bgMusic').play().catch(()=>{});
+        setTimeout(() => {
+          intro.style.display = "none";
+        }, 800);
+      }
+
+      /* ----------------------------------
+     RIPPLE EFFECT
+  ---------------------------------- */
+      document.addEventListener("click", function (e) {
+        const btn = e.target.closest(".ripple-btn");
+        if (!btn) return;
+        const r = document.createElement("span");
+        r.className = "ripple";
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        r.style.width = r.style.height = size + "px";
+        r.style.left = e.clientX - rect.left - size / 2 + "px";
+        r.style.top = e.clientY - rect.top - size / 2 + "px";
+        btn.appendChild(r);
+        setTimeout(() => r.remove(), 700);
+      });
+
+      /* ----------------------------------
+     NAVBAR – HIDE ON SCROLL DOWN
+  ---------------------------------- */
+      let lastY = 0;
+      window.addEventListener("scroll", () => {
+        const y = window.scrollY;
+        document.getElementById("navbar").classList.toggle("hidden", y > lastY && y > 80);
+        lastY = y;
+        updateActiveNav();
+        parallaxHero();
+      });
+
+      /* hamburger */
+      function toggleMenu() {
+        document.getElementById("hamburger").classList.toggle("open");
+        document.getElementById("navLinks").classList.toggle("open");
+      }
+      function closeMenu() {
+        document.getElementById("hamburger").classList.remove("open");
+        document.getElementById("navLinks").classList.remove("open");
+      }
+
+      /* active nav */
+      function updateActiveNav() {
+        const sections = ["hero", "mempelai", "acara", "galeri", "rsvp", "info"];
+        const links = document.querySelectorAll(".nav-links a");
+        let cur = "";
+        sections.forEach((id) => {
+          const el = document.getElementById(id) || document.querySelector("#" + id);
+          if (!el) return;
+          if (window.scrollY >= el.offsetTop - 80) cur = id;
+        });
+        links.forEach((a) => {
+          a.classList.toggle("active", a.getAttribute("href") === "#" + cur);
+        });
+      }
+
+      /* ----------------------------------
+     PARALLAX HERO
+  ---------------------------------- */
+      function parallaxHero() {
+        document.getElementById("heroBg").style.transform = `translateY(${window.scrollY * 0.3}px)`;
+      }
+
+      /* ----------------------------------
+     SCROLL REVEAL (Intersection Observer)
+  ---------------------------------- */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      /* acara cards observer */
+      ["card-akad", "card-resepsi"].forEach((id, i) => {
+        const el = document.getElementById(id);
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                setTimeout(() => e.target.classList.add("visible"), i * 200);
+              }
+            });
+          },
+          { threshold: 0.2 },
+        );
+        obs.observe(el);
+      });
+
+      /* ----------------------------------
+     COUNTDOWN TIMER
+  ---------------------------------- */
+      const weddingDate = new Date("2025-07-12T11:00:00");
+      function updateCountdown() {
+        const diff = weddingDate - new Date();
+        if (diff <= 0) {
+          ["days", "hours", "mins", "secs"].forEach((id) => {
+            document.getElementById("cd-" + id).textContent = "00";
+          });
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById("cd-days").textContent = String(d).padStart(2, "0");
+        document.getElementById("cd-hours").textContent = String(h).padStart(2, "0");
+        document.getElementById("cd-mins").textContent = String(m).padStart(2, "0");
+        document.getElementById("cd-secs").textContent = String(s).padStart(2, "0");
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      /* ----------------------------------
+     GALLERY – BUILD + LIGHTBOX
+  ---------------------------------- */
+      const galleryPhotos = Array.from({ length: 9 }, (_, i) => ({
+        src: `https://picsum.photos/800/600?random=${i + 30}`,
+        thumb: `https://picsum.photos/600/450?random=${i + 30}`,
+      }));
+
+      let lbIndex = 0;
+      (function buildGallery() {
+        const grid = document.getElementById("galleryGrid");
+        galleryPhotos.forEach((p, i) => {
+          const item = document.createElement("div");
+          item.className = "gallery-item";
+          item.innerHTML = `
+        <img src="${p.thumb}" alt="Foto ${i + 1}" loading="lazy"/>
+        <div class="gallery-overlay">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>`;
+          item.addEventListener("click", () => openLightbox(i));
+          grid.appendChild(item);
+        });
+      })();
+
+      function openLightbox(i) {
+        lbIndex = i;
+        document.getElementById("lb-img").src = galleryPhotos[i].src;
+        document.getElementById("lightbox").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function lightboxNav(dir) {
+        lbIndex = (lbIndex + dir + galleryPhotos.length) % galleryPhotos.length;
+        document.getElementById("lb-img").src = galleryPhotos[lbIndex].src;
+      }
+      // close on backdrop click
+      document.getElementById("lightbox").addEventListener("click", function (e) {
+        if (e.target === this) closeLightbox();
+      });
+      // keyboard nav
+      document.addEventListener("keydown", (e) => {
+        if (!document.getElementById("lightbox").classList.contains("open")) return;
+        if (e.key === "ArrowLeft") lightboxNav(-1);
+        if (e.key === "ArrowRight") lightboxNav(1);
+        if (e.key === "Escape") closeLightbox();
+      });
+
+      /* ----------------------------------
+     RSVP FORM + GUESTBOOK
+  ---------------------------------- */
+      function submitRSVP() {
+        const name = document.getElementById("rsvp-name").value.trim();
+        const phone = document.getElementById("rsvp-phone").value.trim();
+        const guests = document.getElementById("rsvp-guests").value.trim();
+        const attend = document.querySelector('input[name="attend"]:checked');
+        const wish = document.getElementById("rsvp-wish").value.trim();
+
+        if (!name || !phone || !guests || !attend || !wish) {
+          alert("⚠️ Mohon lengkapi semua field terlebih dahulu.");
+          return;
+        }
+
+        // Show spinner
+        const spinner = document.getElementById("rsvpSpinner");
+        const submitText = document.getElementById("submitText");
+        const btnSubmit = document.getElementById("btnSubmit");
+        spinner.style.display = "block";
+        submitText.textContent = "Mengirim...";
+        btnSubmit.disabled = true;
+
+        setTimeout(() => {
+          // Save to localStorage
+          const entry = { name, phone, guests, attend: attend.value, wish, time: new Date().toLocaleString("id-ID") };
+          const all = JSON.parse(localStorage.getItem("rsvp_list") || "[]");
+          all.unshift(entry);
+          localStorage.setItem("rsvp_list", JSON.stringify(all));
+
+          // Show success
+          document.getElementById("rsvpFormWrap").style.display = "none";
+          document.getElementById("rsvpSuccess").style.display = "block";
+
+          // Update guestbook
+          renderWishes();
+        }, 1800);
+      }
+
+      function renderWishes() {
+        const list = JSON.parse(localStorage.getItem("rsvp_list") || "[]");
+        const container = document.getElementById("wishesList");
+        const noWishes = document.getElementById("noWishes");
+
+        if (list.length === 0) {
+          noWishes.style.display = "block";
+          return;
+        }
+        noWishes.style.display = "none";
+        container.innerHTML = "";
+        list.forEach((w) => {
+          const card = document.createElement("div");
+          card.className = "wish-card";
+          card.innerHTML = `
+        <div class="wish-name">${escapeHtml(w.name)}</div>
+        <div class="wish-time">${w.time} &nbsp;·&nbsp; ${w.attend === "hadir" ? "✅ Hadir" : w.attend === "tidak" ? "❌ Tidak Hadir" : "🤔 Masih Ragu"}</div>
+        <div class="wish-text">${escapeHtml(w.wish)}</div>`;
+          container.appendChild(card);
+        });
+      }
+
+      function escapeHtml(str) {
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+
+      // Load existing wishes on page load
+      renderWishes();
+
+      /* ----------------------------------
+     GOOGLE MAPS
+  ---------------------------------- */
+      function openMaps() {
+        window.open("https://maps.google.com/?q=Masjid+Al-Hikmah+Jakarta+Selatan", "_blank");
+      }
+
+      /* ----------------------------------
+     SAVE TO CALENDAR (.ics)
+  ---------------------------------- */
+      function saveCalendar(type) {
+        const events = {
+          akad: {
+            title: "Akad Nikah Raka & Dinda",
+            start: "20250712T080000",
+            end: "20250712T100000",
+            location: "Masjid Al-Hikmah, Jl. Merdeka No. 45, Jakarta Selatan",
+          },
+          resepsi: {
+            title: "Resepsi Pernikahan Raka & Dinda",
+            start: "20250712T110000",
+            end: "20250712T140000",
+            location: "Gedung Serbaguna Harmoni, Jl. Sudirman Kav. 12, Jakarta Pusat",
+          },
+        };
+        const ev = events[type];
+        const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nSUMMARY:${ev.title}\r\nDTSTART:${ev.start}\r\nDTEND:${ev.end}\r\nLOCATION:${ev.location}\r\nDESCRIPTION:Undangan Pernikahan Raka & Dinda\r\nEND:VEVENT\r\nEND:VCALENDAR`;
+        const blob = new Blob([ics], { type: "text/calendar" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `${type}-raka-dinda.ics`;
+        a.click();
+      }
+
+      /* ----------------------------------
+     COPY REKENING
+  ---------------------------------- */
+      function copyRekening(btn, nomor) {
+        navigator.clipboard.writeText(nomor).then(() => {
+          const tooltip = btn.querySelector(".copy-tooltip");
+          tooltip.classList.add("show");
+          setTimeout(() => tooltip.classList.remove("show"), 2000);
+        });
+      }
+
+      /* ----------------------------------
+     BACKGROUND MUSIC TOGGLE
+  ---------------------------------- */
+      let musicPlaying = false;
+      const audio = document.getElementById("bgMusic");
+      function toggleMusic() {
+        const btn = document.getElementById("btnMusic");
+        if (musicPlaying) {
+          audio.pause();
+          btn.textContent = "🎵 Putar Musik";
+        } else {
+          audio.play().catch(() => {});
+          btn.textContent = "⏸️ Pause Musik";
+        }
+        musicPlaying = !musicPlaying;
+      }
+    </script>
+  </body>
+</html>
