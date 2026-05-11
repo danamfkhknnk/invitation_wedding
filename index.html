@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wedding Invitation – Raka & Dinda</title>
+    <title>Wedding Invitation – Dana & Khilya</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -19,13 +19,17 @@
         padding: 0;
       }
       :root {
-        --gold: #c9a84c;
-        --gold-lt: #e8d5a3;
-        --ivory: #fdf8f0;
-        --dark: #2c2417;
-        --mid: #6b5744;
-        --glass: rgba(255, 255, 255, 0.18);
-        --shadow: 0 8px 32px rgba(44, 36, 23, 0.12);
+        --primary: #2E86DE;
+        --primary-lt: #A8D4F5;
+        --secondary: #F0F7FF;
+        --secondary-mid: #74B9E7;
+        --gold: #2E86DE;
+        --gold-lt: #A8D4F5;
+        --ivory: #F5FAFF;
+        --dark: #0A2540;
+        --mid: #4A6FA5;
+        --glass: rgba(46, 134, 222, 0.1);
+        --shadow: 0 8px 32px rgba(10, 37, 64, 0.12);
         --radius: 16px;
         --trans: 0.35s ease;
       }
@@ -72,9 +76,9 @@
         left: 0;
         right: 0;
         z-index: 900;
-        background: rgba(253, 248, 240, 0.92);
+        background: rgba(245,250,255,0.92);
         backdrop-filter: blur(10px);
-        box-shadow: 0 2px 16px rgba(44, 36, 23, 0.08);
+        box-shadow: 0 2px 16px rgba(10, 37, 64, 0.08);
         padding: 0 1.5rem;
         height: 60px;
         display: flex;
@@ -178,7 +182,7 @@
         position: fixed;
         inset: 0;
         z-index: 9999;
-        background: linear-gradient(135deg, #2c2417 0%, #4a3728 100%);
+        background: linear-gradient(135deg, #0A2540 0%, #0D3460 55%, #1A6DB5 100%);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -197,7 +201,7 @@
         top: -30px;
         width: 12px;
         height: 12px;
-        background: var(--gold-lt);
+        background: rgba(255, 255, 255, 0.85);
         border-radius: 50% 0 50% 0;
         opacity: 0.7;
         animation: fall linear infinite;
@@ -230,7 +234,7 @@
       .env-body {
         width: 100%;
         height: 100%;
-        background: linear-gradient(160deg, #e8d5a3 60%, #d4b97a);
+        background: linear-gradient(160deg, #A8D4F5 60%, #74B9E7);
         border-radius: 4px;
         position: relative;
       }
@@ -243,13 +247,13 @@
       }
       .env-body::before {
         left: 0;
-        border-left-color: #c9a84c;
-        border-bottom-color: #c9a84c;
+        border-left-color: #2E86DE;
+        border-bottom-color: #2E86DE;
       }
       .env-body::after {
         right: 0;
-        border-right-color: #b8934a;
-        border-bottom-color: #b8934a;
+        border-right-color: #1A6DB5;
+        border-bottom-color: #1A6DB5;
       }
       .env-flap {
         position: absolute;
@@ -259,7 +263,7 @@
         height: 0;
         border-left: 80px solid transparent;
         border-right: 80px solid transparent;
-        border-top: 58px solid #d4b97a;
+        border-top: 58px solid #A8D4F5;
         transform-origin: top center;
         transition: transform 0.8s ease 0.5s;
         z-index: 2;
@@ -309,13 +313,13 @@
         animation: fadeIn 0.8s ease 2.2s forwards;
         padding: 0.85rem 2.5rem;
         background: var(--gold);
-        color: var(--dark);
+        color: #fff;
         font-weight: 600;
         font-size: 0.95rem;
         border: none;
         border-radius: 50px;
         cursor: pointer;
-        box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+        box-shadow: 0 4px 20px rgba(46, 134, 222, 0.4);
         transition:
           transform var(--trans),
           box-shadow var(--trans);
@@ -324,7 +328,7 @@
       }
       .btn-open:hover {
         transform: scale(1.05);
-        box-shadow: 0 6px 28px rgba(201, 168, 76, 0.55);
+        box-shadow: 0 6px 28px rgba(46, 134, 222, 0.55);
       }
       #intro.fade-out {
         animation: introOut 0.8s ease forwards;
@@ -364,7 +368,7 @@
       #hero {
         min-height: 100vh;
         padding-top: 60px;
-        background: linear-gradient(160deg, #2c2417 0%, #4a3728 45%, #6b5744 100%);
+        background: linear-gradient(160deg, #0A2540 0%, #0D3460 45%, #1A6DB5 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -375,13 +379,13 @@
       .hero-bg-parallax {
         position: absolute;
         inset: -20%;
-        background: radial-gradient(ellipse at 60% 40%, rgba(201, 168, 76, 0.15) 0%, transparent 65%), radial-gradient(ellipse at 20% 70%, rgba(201, 168, 76, 0.08) 0%, transparent 50%);
+        background: radial-gradient(ellipse at 60% 40%, rgba(46, 134, 222, 0.2) 0%, transparent 65%), radial-gradient(ellipse at 20% 70%, rgba(74, 185, 231, 0.1) 0%, transparent 50%);
         pointer-events: none;
       }
       .hero-ornament {
         position: absolute;
         font-size: 5rem;
-        color: rgba(201, 168, 76, 0.07);
+        color: rgba(46, 134, 222, 0.07);
         pointer-events: none;
         user-select: none;
       }
@@ -509,7 +513,7 @@
        3. COUNTDOWN TIMER
     =========================== */
       #countdown {
-        background: linear-gradient(135deg, #2c2417 0%, #4a3728 100%);
+        background: linear-gradient(135deg, #0A2540 0%, #0D3460 100%);
         max-width: 100%;
       }
       #countdown section {
@@ -531,7 +535,7 @@
       .count-card {
         background: var(--glass);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(201, 168, 76, 0.25);
+        border: 1px solid rgba(46, 134, 222, 0.25);
         border-radius: var(--radius);
         padding: 1.5rem 2rem;
         min-width: 120px;
@@ -541,7 +545,7 @@
       .count-num {
         font-family: "Playfair Display", serif;
         font-size: clamp(2.5rem, 7vw, 4rem);
-        color: var(--gold);
+        color: var(--gold-lt);
         line-height: 1;
       }
       .count-label {
@@ -572,7 +576,7 @@
       }
       .couple-card:hover {
         transform: scale(1.03);
-        box-shadow: 0 16px 48px rgba(44, 36, 23, 0.18);
+        box-shadow: 0 16px 48px rgba(10, 37, 64, 0.18);
       }
       .couple-photo {
         height: 320px;
@@ -633,7 +637,7 @@
         transform: translateY(0);
       }
       .acara-card:hover {
-        box-shadow: 0 16px 48px rgba(44, 36, 23, 0.15);
+        box-shadow: 0 16px 48px rgba(10, 37, 64, 0.15);
       }
       .acara-icon {
         font-size: 2.5rem;
@@ -675,8 +679,8 @@
       }
       .btn-primary {
         background: var(--gold);
-        color: var(--dark);
-        box-shadow: 0 4px 16px rgba(201, 168, 76, 0.35);
+        color: #fff;
+        box-shadow: 0 4px 16px rgba(46, 134, 222, 0.35);
       }
       .btn-outline {
         background: transparent;
@@ -685,7 +689,7 @@
       }
       .btn-outline:hover {
         background: var(--gold);
-        color: var(--dark);
+        color: #fff;
       }
       @media (max-width: 767px) {
         .acara-grid {
@@ -697,7 +701,7 @@
        6. GALERI FOTO
     =========================== */
       #galeri {
-        background: #f7f1e8;
+        background: #EBF5FF;
         max-width: 100%;
       }
       #galeri section {
@@ -734,7 +738,7 @@
       .gallery-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(44, 36, 23, 0.5);
+        background: rgba(10, 37, 64, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -764,7 +768,7 @@
         position: fixed;
         inset: 0;
         z-index: 9000;
-        background: rgba(0, 0, 0, 0.92);
+        background: rgba(10, 37, 64, 0.95);
         display: none;
         align-items: center;
         justify-content: center;
@@ -796,7 +800,7 @@
         transition: background var(--trans);
       }
       .lb-btn:hover {
-        background: rgba(255, 255, 255, 0.25);
+        background: rgba(46, 134, 222, 0.3);
       }
       #lb-prev {
         left: 1.5rem;
@@ -814,7 +818,7 @@
        7. RSVP FORM
     =========================== */
       #rsvp {
-        background: linear-gradient(135deg, #2c2417, #4a3728);
+        background: linear-gradient(135deg, #0A2540, #0D3460);
         max-width: 100%;
       }
       #rsvp section {
@@ -832,7 +836,7 @@
       .rsvp-form {
         background: var(--glass);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(201, 168, 76, 0.2);
+        border: 1px solid rgba(46, 134, 222, 0.25);
         border-radius: var(--radius);
         padding: 2.5rem;
         box-shadow: var(--shadow);
@@ -854,7 +858,7 @@
         width: 100%;
         padding: 0.75rem 1rem;
         background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(201, 168, 76, 0.3);
+        border: 1px solid rgba(46, 134, 222, 0.3);
         border-radius: 10px;
         color: #fff;
         font-size: 0.9rem;
@@ -898,7 +902,7 @@
         width: 100%;
         padding: 0.9rem;
         background: var(--gold);
-        color: var(--dark);
+        color: #fff;
         border: none;
         border-radius: 50px;
         font-size: 1rem;
@@ -915,12 +919,12 @@
       }
       .btn-submit:hover {
         transform: scale(1.02);
-        box-shadow: 0 6px 24px rgba(201, 168, 76, 0.5);
+        box-shadow: 0 6px 24px rgba(46, 134, 222, 0.5);
       }
       .spinner {
         width: 18px;
         height: 18px;
-        border: 2px solid rgba(44, 36, 23, 0.3);
+        border: 2px solid rgba(10, 37, 64, 0.3);
         border-top-color: var(--dark);
         border-radius: 50%;
         animation: spin 0.6s linear infinite;
@@ -1006,7 +1010,7 @@
        9. INFORMASI TAMBAHAN
     =========================== */
       #info {
-        background: #f7f1e8;
+        background: #EBF5FF;
       }
       .info-grid {
         display: grid;
@@ -1063,7 +1067,7 @@
       }
       /* rekening */
       .rekening-item {
-        background: var(--ivory);
+        background: var(--secondary);
         border-radius: 10px;
         padding: 1rem;
         margin-top: 0.75rem;
@@ -1084,7 +1088,7 @@
       .btn-copy {
         padding: 0.4rem 0.85rem;
         background: var(--gold);
-        color: var(--dark);
+        color: #fff;
         border: none;
         border-radius: 50px;
         font-size: 0.75rem;
@@ -1121,7 +1125,7 @@
        10. FOOTER
     =========================== */
       footer {
-        background: linear-gradient(135deg, #2c2417, #1a1008);
+        background: linear-gradient(135deg, #0A2540, #061828);
         color: var(--gold-lt);
         text-align: center;
         padding: clamp(3rem, 6vw, 5rem) 2rem 2rem;
@@ -1137,7 +1141,7 @@
       }
       .footer-verse {
         font-size: 0.75rem;
-        color: rgba(232, 213, 163, 0.6);
+        color: rgba(168, 212, 245, 0.6);
         margin-bottom: 2rem;
       }
       .footer-names {
@@ -1148,7 +1152,7 @@
       }
       .btn-music {
         padding: 0.75rem 2rem;
-        background: rgba(201, 168, 76, 0.15);
+        background: rgba(46, 134, 222, 0.15);
         border: 1px solid var(--gold);
         border-radius: 50px;
         color: var(--gold);
@@ -1162,12 +1166,168 @@
         min-height: 44px;
       }
       .btn-music:hover {
-        background: rgba(201, 168, 76, 0.3);
+        background: rgba(46, 134, 222, 0.3);
       }
       .footer-copy {
         font-size: 0.72rem;
-        color: rgba(232, 213, 163, 0.35);
+        color: rgba(168, 212, 245, 0.35);
         margin-top: 2.5rem;
+      }
+    
+      @keyframes fadeSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .floating-hearts {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .floating-hearts span {
+        position: absolute;
+        bottom: -20px;
+        color: rgba(168, 212, 245, 0.25);
+        font-size: clamp(1rem, 3vw, 2rem);
+        animation: floatHeart 8s ease-in infinite;
+        animation-delay: calc(var(--i) * 1.5s);
+        left: calc(var(--i) * 18% + 5%);
+      }
+      @keyframes floatHeart {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translateY(-110vh) scale(1.3);
+          opacity: 0;
+        }
+      }
+      .count-num {
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+      }
+      .count-num.flip {
+        transform: rotateX(90deg);
+        opacity: 0;
+      }
+      .gf-btn {
+        padding: 0.45rem 1.2rem;
+        border-radius: 50px;
+        border: 2px solid var(--gold);
+        background: transparent;
+        color: var(--gold);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--trans);
+      }
+      .gf-btn.active,
+      .gf-btn:hover {
+        background: var(--gold);
+        color: #fff;
+      }
+      .form-group input.error,
+      .form-group textarea.error,
+      .form-group select.error {
+        border-color: #e74c3c !important;
+        animation: shake 0.4s ease;
+      }
+      .form-group input.valid,
+      .form-group textarea.valid {
+        border-color: #27ae60 !important;
+      }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-6px);
+        }
+        75% {
+          transform: translateX(6px);
+        }
+      }
+      .timeline {
+        position: relative;
+        max-width: 600px;
+        margin: 2rem auto 0;
+        padding-left: 2rem;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0.75rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--gold), transparent);
+      }
+      .tl-item {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        align-items: flex-start;
+      }
+      .tl-dot {
+        width: 40px;
+        height: 40px;
+        background: var(--glass);
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        position: relative;
+        left: -1.25rem;
+      }
+      .tl-card {
+        background: var(--glass);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(46, 134, 222, 0.25);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.5rem;
+        text-align: left;
+        flex: 1;
+      }
+      .tl-card h4 {
+        font-family: "Playfair Display", serif;
+        color: var(--gold);
+        font-size: 1.05rem;
+        margin-bottom: 0.2rem;
+      }
+      .tl-date {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+        color: var(--gold-lt);
+        margin-bottom: 0.5rem;
+      }
+      .tl-card p:last-child {
+        font-size: 0.85rem;
+        color: rgba(168, 212, 245, 0.8);
+        line-height: 1.7;
+      }
+      @media (max-width: 767px) {
+        .couple-photo {
+          height: 220px;
+        }
+        .count-card {
+          min-width: 70px;
+          padding: 1rem;
+        }
+        .count-num {
+          font-size: clamp(1.8rem, 8vw, 2.5rem);
+        }
       }
     </style>
   </head>
@@ -1184,7 +1344,7 @@
         <div class="envelope">
           <div class="env-body"></div>
           <div class="env-flap" id="envFlap"></div>
-          <div class="env-letter" id="envLetter">✦<br />R &amp; D<br />✦</div>
+          <div class="env-letter" id="envLetter">✦<br />D &amp; K<br />✦</div>
         </div>
       </div>
 
@@ -1197,11 +1357,12 @@
      STICKY NAVBAR
 ======================================= -->
     <nav id="navbar">
-      <div class="nav-brand">R &amp; D</div>
+      <div class="nav-brand">D &amp; K</div>
       <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#hero" onclick="closeMenu()">Beranda</a></li>
         <li><a href="#mempelai" onclick="closeMenu()">Mempelai</a></li>
+        <li><a href="#lovestory" onclick="closeMenu()">Love Story</a></li>
         <li><a href="#acara" onclick="closeMenu()">Acara</a></li>
         <li><a href="#galeri" onclick="closeMenu()">Galeri</a></li>
         <li><a href="#rsvp" onclick="closeMenu()">RSVP</a></li>
@@ -1222,12 +1383,19 @@
       <div class="hero-content">
         <p class="hero-subtitle">The Wedding of</p>
         <h1 class="hero-names">
-          <span>Raka Pratama</span>
-          <em class="hero-ampersand">&amp;</em>
-          <span>Dinda Aulia</span>
+          <span class="hero-name-1" style="opacity: 0; animation: fadeSlideUp 1s ease 0.3s forwards">Dana Mifkhakun Nur Khasan</span>
+          <em class="hero-ampersand" style="opacity: 0; animation: fadeSlideUp 1s ease 0.8s forwards">&amp;</em>
+          <span class="hero-name-2" style="opacity: 0; animation: fadeSlideUp 1s ease 1.2s forwards">Khilyatun Nisa`</span>
         </h1>
         <div class="hero-divider"></div>
-        <p class="hero-date">◈ &nbsp; Sabtu, 12 Juli 2025 &nbsp; ◈</p>
+        <div class="floating-hearts" aria-hidden="true">
+          <span style="--i: 1">♥</span>
+          <span style="--i: 2">♥</span>
+          <span style="--i: 3">♥</span>
+          <span style="--i: 4">♥</span>
+          <span style="--i: 5">♥</span>
+        </div>
+        <p class="hero-date">◈ &nbsp; Sabtu, 21 November 2026 &nbsp; ◈</p>
       </div>
 
       <div class="scroll-indicator">
@@ -1279,9 +1447,9 @@
             <img src="https://picsum.photos/600/400?random=10" alt="Foto Mempelai Pria" loading="lazy" />
           </div>
           <div class="couple-info">
-            <h3>Raka Pratama, S.T.</h3>
-            <p class="couple-son">Putra Pertama dari</p>
-            <p class="couple-parents">Bapak Ahmad Suroso &amp; Ibu Siti Rahayu</p>
+            <h3>Dana Mifkhakun Nur Khasan, S.T.</h3>
+            <p class="couple-son">Putra dari</p>
+            <p class="couple-parents">Coming Soon</p>
           </div>
         </div>
         <!-- Mempelai Wanita -->
@@ -1290,13 +1458,58 @@
             <img src="https://picsum.photos/600/400?random=20" alt="Foto Mempelai Wanita" loading="lazy" />
           </div>
           <div class="couple-info">
-            <h3>Dinda Aulia, S.Pd.</h3>
-            <p class="couple-son">Putri Kedua dari</p>
-            <p class="couple-parents">Bapak Hendra Wijaya &amp; Ibu Dewi Lestari</p>
+            <h3>Khilyatun Nisa`, S.Pd.</h3>
+            <p class="couple-son">Putri dari</p>
+            <p class="couple-parents">Coming Soon</p>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ======================================
+     LOVE STORY TIMELINE
+======================================= -->
+    <div id="lovestory" style="background: linear-gradient(135deg, #0A2540, #0D3460)">
+      <section class="text-center">
+        <p class="section-tag" style="color: var(--gold-lt)">Our Journey</p>
+        <h2 class="section-title" style="color: #fff">Love Story</h2>
+        <div class="section-divider"></div>
+        <div class="timeline">
+          <div class="tl-item reveal">
+            <div class="tl-dot">💑</div>
+            <div class="tl-card">
+              <h4>Pertama Bertemu</h4>
+              <p class="tl-date">2020</p>
+              <p>Kisah ini dimulai dari sebuah pertemuan sederhana yang ternyata mengubah segalanya.</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot">💌</div>
+            <div class="tl-card">
+              <h4>Jatuh Cinta</h4>
+              <p class="tl-date">2021</p>
+              <p>Dari pertemanan tumbuh rasa yang tak bisa lagi disembunyikan.</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot">💍</div>
+            <div class="tl-card">
+              <h4>Lamaran</h4>
+              <p class="tl-date">2025</p>
+              <p>Sebuah pertanyaan sederhana yang menjadi awal dari selamanya.</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-dot">🕌</div>
+            <div class="tl-card">
+              <h4>Hari Pernikahan</h4>
+              <p class="tl-date">21 November 2026</p>
+              <p>Menyempurnakan separuh agama, bersama selamanya.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <!-- ======================================
      5. DETAIL ACARA
@@ -1312,14 +1525,26 @@
             <div class="acara-icon">🕌</div>
             <h3>Akad Nikah</h3>
             <div class="acara-detail">
-              <p>📅 Sabtu, 12 Juli 2025</p>
-              <p>⏰ 08.00 – 10.00 WIB</p>
-              <p>📍 Masjid Al-Hikmah</p>
-              <p>Jl. Merdeka No. 45, Jakarta Selatan</p>
+              <p>📅 Sabtu, 21 November 2026</p>
+              <p>⏰ Coming Soon</p>
+              <p>📍 Coming Soon</p>
+              <p>Coming Soon</p>
             </div>
             <div class="acara-btns">
               <button class="btn btn-primary ripple-btn" onclick="openMaps()">📍 Lihat Lokasi</button>
               <button class="btn btn-outline ripple-btn" onclick="saveCalendar('akad')">📅 Simpan Kalender</button>
+            </div>
+            <div style="margin-top: 1.25rem; border-radius: 12px; overflow: hidden; height: 200px">
+              <iframe
+                src="https://maps.google.com/maps?q=Coming+Soon&output=embed"
+                width="100%"
+                height="200"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi Akad"
+              ></iframe>
             </div>
           </div>
           <!-- Resepsi -->
@@ -1327,14 +1552,26 @@
             <div class="acara-icon">🎊</div>
             <h3>Resepsi Pernikahan</h3>
             <div class="acara-detail">
-              <p>📅 Sabtu, 12 Juli 2025</p>
-              <p>⏰ 11.00 – 14.00 WIB</p>
-              <p>📍 Gedung Serbaguna Harmoni</p>
-              <p>Jl. Sudirman Kav. 12, Jakarta Pusat</p>
+              <p>📅 Sabtu, 21 November 2026</p>
+              <p>⏰ Coming Soon</p>
+              <p>📍 Coming Soon</p>
+              <p>Coming Soon</p>
             </div>
             <div class="acara-btns">
               <button class="btn btn-primary ripple-btn" onclick="openMaps()">📍 Lihat Lokasi</button>
               <button class="btn btn-outline ripple-btn" onclick="saveCalendar('resepsi')">📅 Simpan Kalender</button>
+            </div>
+            <div style="margin-top: 1.25rem; border-radius: 12px; overflow: hidden; height: 200px">
+              <iframe
+                src="https://maps.google.com/maps?q=Coming+Soon&output=embed"
+                width="100%"
+                height="200"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lokasi Resepsi"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -1349,6 +1586,12 @@
         <p class="section-tag reveal">Momen Berharga</p>
         <h2 class="section-title reveal">Galeri Foto</h2>
         <div class="section-divider"></div>
+        <div class="gallery-filters" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem">
+          <button class="gf-btn active" onclick="filterGallery('all', this)">Semua</button>
+          <button class="gf-btn" onclick="filterGallery('prewed', this)">Pre-Wedding</button>
+          <button class="gf-btn" onclick="filterGallery('akad', this)">Akad</button>
+          <button class="gf-btn" onclick="filterGallery('resepsi', this)">Resepsi</button>
+        </div>
         <div class="gallery-grid" id="galleryGrid">
           <!-- 9 foto placeholder -->
         </div>
@@ -1440,11 +1683,11 @@
             <h4>👗 Dress Code</h4>
             <p>Harap mengenakan pakaian formal dengan palet warna berikut:</p>
             <div class="swatches">
-              <div class="swatch" style="background: #c9a84c" title="Soft Gold"></div>
-              <div class="swatch" style="background: #f5f0e8" title="Ivory"></div>
-              <div class="swatch" style="background: #8b7355" title="Warm Brown"></div>
-              <div class="swatch" style="background: #d4b896" title="Nude"></div>
-              <div class="swatch" style="background: #2c2417" title="Dark Chocolate"></div>
+              <div class="swatch" style="background: #2E86DE" title="Cobalt Blue"></div>
+              <div class="swatch" style="background: #F5FAFF" title="Ice White"></div>
+              <div class="swatch" style="background: #4A6FA5" title="Steel Blue"></div>
+              <div class="swatch" style="background: #A8D4F5" title="Sky Blue"></div>
+              <div class="swatch" style="background: #0A2540" title="Midnight Navy"></div>
             </div>
           </div>
 
@@ -1478,7 +1721,7 @@
             <p>Bagi yang ingin memberikan hadiah pernikahan secara digital:</p>
             <div class="rekening-item">
               <div class="rek-info">
-                <div class="rek-bank">BCA – a.n. Raka Pratama</div>
+                <div class="rek-bank">BCA – a.n. Dana Mifkhakun Nur Khasan</div>
                 <div class="rek-num">1234567890</div>
               </div>
               <button class="btn-copy ripple-btn" onclick="copyRekening(this, '1234567890')">
@@ -1488,7 +1731,7 @@
             </div>
             <div class="rekening-item">
               <div class="rek-info">
-                <div class="rek-bank">Mandiri – a.n. Dinda Aulia</div>
+                <div class="rek-bank">Mandiri – a.n. Khilyatun Nisa`</div>
                 <div class="rek-num">0987654321</div>
               </div>
               <button class="btn-copy ripple-btn" onclick="copyRekening(this, '0987654321')">
@@ -1507,16 +1750,25 @@
     <footer>
       <p class="footer-quote">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."</p>
       <p class="footer-verse">— QS. Ar-Rum: 21</p>
-      <div class="footer-names">Raka &amp; Dinda</div>
+      <div class="footer-names">Dana &amp; Khilya</div>
 
-      <button class="btn-music ripple-btn" id="btnMusic" onclick="toggleMusic()">🎵 Putar Musik</button>
+      <div class="music-player" style="display: inline-flex; align-items: center; gap: 0.75rem; background: rgba(46, 134, 222, 0.15); border: 1px solid var(--gold); border-radius: 50px; padding: 0.5rem 1.25rem; margin-top: 1rem">
+        <button class="btn-music ripple-btn" id="btnMusic" onclick="toggleMusic()" style="background: none; border: none; color: var(--gold); font-size: 1.1rem; cursor: pointer; min-width: 28px">🎵</button>
+        <div style="display: flex; flex-direction: column; gap: 4px; min-width: 140px">
+          <span style="font-size: 0.72rem; color: var(--gold-lt); letter-spacing: 1px">♪ Wedding Song</span>
+          <div style="height: 3px; background: rgba(168, 212, 245, 0.25); border-radius: 2px; overflow: hidden">
+            <div id="musicProgress" style="height: 100%; width: 0%; background: var(--gold); transition: width 0.5s linear"></div>
+          </div>
+        </div>
+        <span id="musicTime" style="font-size: 0.7rem; color: var(--gold-lt); min-width: 36px">0:00</span>
+      </div>
 
       <!-- Audio (royalty-free public URL) -->
       <audio id="bgMusic" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg" />
       </audio>
 
-      <p class="footer-copy">Made with ❤️ &nbsp;|&nbsp; Raka &amp; Dinda Wedding 2025</p>
+      <p class="footer-copy">Made with ❤️ &nbsp;|&nbsp; Dana &amp; Khilya Wedding 2026</p>
     </footer>
 
     <!-- ======================================
@@ -1555,11 +1807,14 @@
       function openInvitation() {
         const intro = document.getElementById("intro");
         intro.classList.add("fade-out");
-        // start music (requires user gesture)
-        // document.getElementById('bgMusic').play().catch(()=>{});
         setTimeout(() => {
           intro.style.display = "none";
         }, 800);
+        setTimeout(() => {
+          audio.play().catch(() => {});
+          musicPlaying = true;
+          document.getElementById("btnMusic").textContent = "⏸️";
+        }, 900);
       }
 
       /* ----------------------------------
@@ -1603,7 +1858,7 @@
 
       /* active nav */
       function updateActiveNav() {
-        const sections = ["hero", "mempelai", "acara", "galeri", "rsvp", "info"];
+        const sections = ["hero", "mempelai", "lovestory", "acara", "galeri", "rsvp", "info"];
         const links = document.querySelectorAll(".nav-links a");
         let cur = "";
         sections.forEach((id) => {
@@ -1658,7 +1913,18 @@
       /* ----------------------------------
      COUNTDOWN TIMER
   ---------------------------------- */
-      const weddingDate = new Date("2025-07-12T11:00:00");
+      const weddingDate = new Date("2026-11-21T11:00:00");
+      function setCount(id, val) {
+        const el = document.getElementById("cd-" + id);
+        const newVal = String(val).padStart(2, "0");
+        if (el.textContent !== newVal) {
+          el.classList.add("flip");
+          setTimeout(() => {
+            el.textContent = newVal;
+            el.classList.remove("flip");
+          }, 200);
+        }
+      }
       function updateCountdown() {
         const diff = weddingDate - new Date();
         if (diff <= 0) {
@@ -1671,10 +1937,10 @@
         const h = Math.floor((diff % 86400000) / 3600000);
         const m = Math.floor((diff % 3600000) / 60000);
         const s = Math.floor((diff % 60000) / 1000);
-        document.getElementById("cd-days").textContent = String(d).padStart(2, "0");
-        document.getElementById("cd-hours").textContent = String(h).padStart(2, "0");
-        document.getElementById("cd-mins").textContent = String(m).padStart(2, "0");
-        document.getElementById("cd-secs").textContent = String(s).padStart(2, "0");
+        setCount("days", d);
+        setCount("hours", h);
+        setCount("mins", m);
+        setCount("secs", s);
       }
       updateCountdown();
       setInterval(updateCountdown, 1000);
@@ -1682,10 +1948,17 @@
       /* ----------------------------------
      GALLERY – BUILD + LIGHTBOX
   ---------------------------------- */
-      const galleryPhotos = Array.from({ length: 9 }, (_, i) => ({
-        src: `https://picsum.photos/800/600?random=${i + 30}`,
-        thumb: `https://picsum.photos/600/450?random=${i + 30}`,
-      }));
+      const galleryPhotos = [
+        { src: "https://picsum.photos/800/600?random=30", thumb: "https://picsum.photos/600/450?random=30", cat: "prewed" },
+        { src: "https://picsum.photos/800/600?random=31", thumb: "https://picsum.photos/600/450?random=31", cat: "prewed" },
+        { src: "https://picsum.photos/800/600?random=32", thumb: "https://picsum.photos/600/450?random=32", cat: "prewed" },
+        { src: "https://picsum.photos/800/600?random=33", thumb: "https://picsum.photos/600/450?random=33", cat: "akad" },
+        { src: "https://picsum.photos/800/600?random=34", thumb: "https://picsum.photos/600/450?random=34", cat: "akad" },
+        { src: "https://picsum.photos/800/600?random=35", thumb: "https://picsum.photos/600/450?random=35", cat: "akad" },
+        { src: "https://picsum.photos/800/600?random=36", thumb: "https://picsum.photos/600/450?random=36", cat: "resepsi" },
+        { src: "https://picsum.photos/800/600?random=37", thumb: "https://picsum.photos/600/450?random=37", cat: "resepsi" },
+        { src: "https://picsum.photos/800/600?random=38", thumb: "https://picsum.photos/600/450?random=38", cat: "resepsi" },
+      ];
 
       let lbIndex = 0;
       (function buildGallery() {
@@ -1702,6 +1975,15 @@
           grid.appendChild(item);
         });
       })();
+
+      function filterGallery(cat, btn) {
+        document.querySelectorAll(".gf-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".gallery-item").forEach((item, i) => {
+          const match = cat === "all" || galleryPhotos[i].cat === cat;
+          item.style.display = match ? "block" : "none";
+        });
+      }
 
       function openLightbox(i) {
         lbIndex = i;
@@ -1739,10 +2021,20 @@
         const attend = document.querySelector('input[name="attend"]:checked');
         const wish = document.getElementById("rsvp-wish").value.trim();
 
-        if (!name || !phone || !guests || !attend || !wish) {
-          alert("⚠️ Mohon lengkapi semua field terlebih dahulu.");
-          return;
-        }
+        let valid = true;
+        [
+          ["rsvp-name", name],
+          ["rsvp-phone", phone],
+          ["rsvp-guests", guests],
+          ["rsvp-wish", wish],
+        ].forEach(([id, val]) => {
+          const el = document.getElementById(id);
+          el.classList.toggle("error", !val);
+          el.classList.toggle("valid", !!val);
+          if (!val) valid = false;
+        });
+        if (!attend) valid = false;
+        if (!valid) return;
 
         // Show spinner
         const spinner = document.getElementById("rsvpSpinner");
@@ -1794,14 +2086,27 @@
         return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
       }
 
+      function setupRealtimeValidation() {
+        ["rsvp-name", "rsvp-phone", "rsvp-guests", "rsvp-wish"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.addEventListener("input", () => {
+            const hasValue = !!el.value.trim();
+            el.classList.toggle("error", !hasValue);
+            el.classList.toggle("valid", hasValue);
+          });
+        });
+      }
+
       // Load existing wishes on page load
       renderWishes();
+      setupRealtimeValidation();
 
       /* ----------------------------------
      GOOGLE MAPS
   ---------------------------------- */
       function openMaps() {
-        window.open("https://maps.google.com/?q=Masjid+Al-Hikmah+Jakarta+Selatan", "_blank");
+        window.open("https://maps.google.com/?q=Coming+Soon", "_blank");
       }
 
       /* ----------------------------------
@@ -1810,24 +2115,24 @@
       function saveCalendar(type) {
         const events = {
           akad: {
-            title: "Akad Nikah Raka & Dinda",
-            start: "20250712T080000",
-            end: "20250712T100000",
-            location: "Masjid Al-Hikmah, Jl. Merdeka No. 45, Jakarta Selatan",
+            title: "Akad Nikah Dana & Khilya",
+            start: "20261121T080000",
+            end: "20261121T100000",
+            location: "Coming Soon, Coming Soon",
           },
           resepsi: {
-            title: "Resepsi Pernikahan Raka & Dinda",
-            start: "20250712T110000",
-            end: "20250712T140000",
-            location: "Gedung Serbaguna Harmoni, Jl. Sudirman Kav. 12, Jakarta Pusat",
+            title: "Resepsi Pernikahan Dana & Khilya",
+            start: "20261121T110000",
+            end: "20261121T140000",
+            location: "Coming Soon, Coming Soon",
           },
         };
         const ev = events[type];
-        const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nSUMMARY:${ev.title}\r\nDTSTART:${ev.start}\r\nDTEND:${ev.end}\r\nLOCATION:${ev.location}\r\nDESCRIPTION:Undangan Pernikahan Raka & Dinda\r\nEND:VEVENT\r\nEND:VCALENDAR`;
+        const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nBEGIN:VEVENT\r\nSUMMARY:${ev.title}\r\nDTSTART:${ev.start}\r\nDTEND:${ev.end}\r\nLOCATION:${ev.location}\r\nDESCRIPTION:Undangan Pernikahan Dana & Khilya\r\nEND:VEVENT\r\nEND:VCALENDAR`;
         const blob = new Blob([ics], { type: "text/calendar" });
         const a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = `${type}-raka-dinda.ics`;
+        a.download = `${type}-dana-khilya.ics`;
         a.click();
       }
 
@@ -1851,13 +2156,22 @@
         const btn = document.getElementById("btnMusic");
         if (musicPlaying) {
           audio.pause();
-          btn.textContent = "🎵 Putar Musik";
+          btn.textContent = "🎵";
         } else {
           audio.play().catch(() => {});
-          btn.textContent = "⏸️ Pause Musik";
+          btn.textContent = "⏸️";
         }
         musicPlaying = !musicPlaying;
       }
+
+      audio.addEventListener("timeupdate", () => {
+        if (!audio.duration) return;
+        const pct = (audio.currentTime / audio.duration) * 100;
+        document.getElementById("musicProgress").style.width = pct + "%";
+        const m = Math.floor(audio.currentTime / 60);
+        const sec = String(Math.floor(audio.currentTime % 60)).padStart(2, "0");
+        document.getElementById("musicTime").textContent = m + ":" + sec;
+      });
     </script>
   </body>
 </html>
